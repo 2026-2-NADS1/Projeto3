@@ -1,0 +1,192 @@
+﻿String? linha;
+bool conversaoOk;
+
+Console.Clear();
+
+Console.WriteLine("Digite seu nickname:");
+String nickname = Console.ReadLine() ?? "";
+if (nickname == "") {
+    Console.WriteLine("ERRO na entrada 1 (nickname): dado ausente (ou fim do arquivo).");
+    Environment.Exit(1);
+}
+
+Console.WriteLine("Digite faixa etaria:");
+linha = Console.ReadLine();
+int faixaEtaria;
+conversaoOk = int.TryParse(linha, out faixaEtaria);
+if(!conversaoOk) {
+    Console.WriteLine("ERRO na entrada 2 (faixa etaria): dado ausente/inválido (ou fim do arquivo).");
+    Environment.Exit(1);
+}
+if(faixaEtaria < 1 || faixaEtaria > 6) {
+    Console.WriteLine("ERRO na entrada 2 (faixa etaria): faixa inválida.");
+    Environment.Exit(1);    
+}
+
+String nomeFaixa = "Até 12 anos";
+if(faixaEtaria == 2) {
+    nomeFaixa = "13 a 17 anos";
+}
+if(faixaEtaria == 3) {
+    nomeFaixa = "18 a 24 anos";
+}
+if (faixaEtaria == 4)
+{
+    nomeFaixa = "25 a 39 anos";
+}
+
+if(faixaEtaria == 5) {
+    nomeFaixa = "40 anos ou mais";
+}
+if(faixaEtaria == 6) {
+    nomeFaixa = "Prefiro não informar";
+}
+
+Console.WriteLine("Digite 5 para a quantidade de questões fáceis:");
+linha = Console.ReadLine();
+int faceis;
+conversaoOk = int.TryParse(linha, out faceis);
+if(!conversaoOk) {
+    Console.WriteLine("ERRO na entrada 3 (quantidade de questões fáceis): dado ausente/inválido (ou fim do arquivo).");
+    Environment.Exit(1);
+}
+if(faceis != 5) {
+    Console.WriteLine("ERRO na entrada 3 (quantidade de questões fáceis): digite somente 5.");
+    Environment.Exit(1);
+}
+
+Console.WriteLine("Digite 10 para a quantidade de questões medianas:");
+linha = Console.ReadLine();
+int mediana;
+conversaoOk = int.TryParse(linha, out mediana);
+if(!conversaoOk) {
+    Console.WriteLine("ERRO na entrada 4 (qtde medianas): dado ausente/inválido (ou fim do arquivo).");
+    Environment.Exit(1);
+}
+if(mediana != 10) {
+    Console.WriteLine("ERRO na entrada 4 (qtde medianas): digite somente 10.");
+    Environment.Exit(1);
+}
+
+Console.WriteLine("Digite 15 para a quantidade de questões difíceis:");
+linha = Console.ReadLine();
+int dificeis;
+conversaoOk = int.TryParse(linha, out dificeis);
+if(!conversaoOk) {
+    Console.WriteLine("ERRO na entrada 5 (qtde difíceis): dado ausente/inválido (ou fim do arquivo).");
+    Environment.Exit(1);
+}
+if(dificeis != 15) {
+    Console.WriteLine("ERRO na entrada 5 (qtde difíceis): digite somente 15.");
+    Environment.Exit(1);
+}
+
+Console.WriteLine("Digite a quantidade de dicas usadas (de 0 a 15):");
+linha = Console.ReadLine();
+int dicasUsadas;
+conversaoOk = int.TryParse(linha, out dicasUsadas);
+if(!conversaoOk) {
+    Console.WriteLine("ERRO na entrada 6 (quantidade de dicas): dado ausente/inválido (ou fim do arquivo).");
+    Environment.Exit(1);
+}
+if(dicasUsadas < 0 || dicasUsadas > 15) {
+    Console.WriteLine("ERRO na entrada 6 (quantidade de dicas): digite um valor entre 0 e 15.");
+    Environment.Exit(1);
+}
+
+Console.WriteLine("Digite o tempo total gasto nas questões, em segundos:");
+linha = Console.ReadLine();
+int tempoTotalSegundos;
+conversaoOk = int.TryParse(linha, out tempoTotalSegundos);
+if(!conversaoOk) {
+    Console.WriteLine("ERRO na entrada 7 (tempo total): digite um número inteiro em segundos.");
+    Environment.Exit(1);
+}
+if(tempoTotalSegundos < 0) {
+    Console.WriteLine("ERRO na entrada 7 (tempo total): o tempo não pode ser negativo.");
+    Environment.Exit(1);
+}
+
+// As questões difíceis foram informadas, mas não foram jogadas.
+int acertosDificeis = 0;
+int totalQuestoesJogadas = faceis + mediana;
+int totalAcertos = faceis + mediana + acertosDificeis;
+int pontuacaoSemDesconto = faceis * 10 + mediana * 20 + acertosDificeis * 30;
+int descontoDicas = dicasUsadas * 5;
+int pontuacao = pontuacaoSemDesconto - descontoDicas;
+int minutos = tempoTotalSegundos / 60;
+int segundosRestantes = tempoTotalSegundos % 60;
+double mediaTempoPorQuestao = tempoTotalSegundos * 1.0 / totalQuestoesJogadas;
+double percentualAcertos = totalAcertos * 100.0 / totalQuestoesJogadas;
+double percentualFaceis = faceis * 100.0 / 5;
+double percentualMediana = mediana * 100.0 / 10;
+double percentualDificeis = acertosDificeis * 100.0 / 15;
+String classificacao = "Iniciante";
+if(percentualAcertos >= 90) {
+    classificacao = "Mestre das Marcas";
+}
+else if(percentualAcertos >= 70) {
+    classificacao = "Conhecedor das Marcas";
+}
+else if(percentualAcertos >= 50) {
+    classificacao = "Aprendiz";
+}
+
+// Em caso de empate, a comparação segue do nível mais difícil para o mais fácil.
+String melhorNivel = "Nenhum nível jogado";
+double maiorPercentual = 0;
+if(percentualFaceis > 0) {
+    melhorNivel = "Fácil";
+    maiorPercentual = percentualFaceis;
+}
+if(percentualMediana >= maiorPercentual) {
+    melhorNivel = "Mediano";
+    maiorPercentual = percentualMediana;
+}
+if(percentualDificeis >= maiorPercentual && percentualDificeis > 0) {
+    melhorNivel = "Difícil";
+    maiorPercentual = percentualDificeis;
+}
+
+String ritmo = "pausado";
+if(mediaTempoPorQuestao <= 10) {
+    ritmo = "rápido";
+}
+else if(mediaTempoPorQuestao <= 20) {
+    ritmo = "normal";
+}
+
+
+
+
+Console.WriteLine("===== ARCOR – DESAFIO DAS MARCAS: RESUMO DA PARTIDA =====");
+Console.WriteLine("                  ");
+Console.WriteLine("Jogador: "+nickname);
+Console.WriteLine("Faixa Etária: " + nomeFaixa);
+Console.WriteLine("                  ");
+Console.WriteLine(" Desempenho por nível de dificuldade: ");        
+Console.WriteLine("Você acertou a seguinte quantidade de questões Faceis : "+faceis);
+Console.WriteLine(" Fácil: (5/5)  100%  **** ");
+Console.WriteLine("                  ");
+Console.WriteLine("                  ");
+
+Console.WriteLine("Você acertou a seguinte quantidade de questões Medianas : "+mediana);
+Console.WriteLine(" Média: (10/10)  100%  **** ");
+Console.WriteLine("                  ");
+Console.WriteLine("Você não jogou a partida de questões Difíceis : " + acertosDificeis);
+Console.WriteLine(" Difícil: (0/15)  0%  não jogado ");
+Console.WriteLine("                  ");
+Console.WriteLine("Total de acertos: " + totalAcertos + " de " + totalQuestoesJogadas + " questões jogadas");
+Console.WriteLine("Percentual de acertos: " + percentualAcertos.ToString("F2") + "%");
+Console.WriteLine("Classificação: " + classificacao);
+Console.WriteLine("Melhor nível: " + melhorNivel + " (" + maiorPercentual.ToString("F2") + "%)");
+Console.WriteLine("Dicas usadas: " + dicasUsadas);
+Console.WriteLine("Desconto pelas dicas: " + descontoDicas + " pontos");
+Console.WriteLine("Pontuação: " + pontuacao + " de " + pontuacaoSemDesconto + " pontos possíveis");
+Console.WriteLine("Tempo total: " + minutos + " minuto(s) e " + segundosRestantes + " segundo(s)");
+Console.WriteLine("Média de tempo por questão: " + mediaTempoPorQuestao.ToString("F2") + " segundo(s)");
+Console.WriteLine("Ritmo: " + ritmo);
+
+Console.WriteLine("============================================================================");
+
+
