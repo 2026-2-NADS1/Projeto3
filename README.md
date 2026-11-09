@@ -14,7 +14,7 @@ Vide tutoriais do PI.
 
 ## Nome do Grupo
 
-## Integrantes: <a href="https://github.com/JoaoKVPanzo"> João Kiala Vioka Panzo</a>, <a href="https://github.com/julioneto1603">Julio Paulino de Souza Neto</a>, <a href="https://github.com/viniciusmendocadev">Vinicius Mendonça Menes</a>, <a href="https://www.linkedin.com/in/victorbarq/">Yusuke Urameshi</a>, <a href="https://www.linkedin.com/in/victorbarq/">Roronoa Zoro</a>
+## Integrantes: <a href="https://github.com/JoaoKVPanzo"> João Kiala Vioka Panzo</a>, <a href="https://github.com/julioneto1603">Julio Paulino de Souza Neto</a>, <a href="https://github.com/viniciusmendocadev">Vinicius Mendonça Menes</a>, <a href="https://github.com/Eduardamolina">Eduarda Molina Martins</a>
 
 ## Professores Orientadores: <a href="https://www.linkedin.com/in/victorbarq/">Dr. Victor Von Doom</a>, <a href="https://www.linkedin.com/in/victorbarq/">Me. Saitama</a>, <a href="https://www.linkedin.com/in/victorbarq/">Dr. Strange</a>, <a href="https://www.linkedin.com/in/victorbarq/">Me. Yoda</a>, <a href="https://www.linkedin.com/in/victorbarq/">Dr. Gero</a>
 
