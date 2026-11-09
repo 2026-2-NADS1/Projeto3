@@ -5,7 +5,7 @@ using Spectre.Console;
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 
-// ===================== BANCO DE QUESTÕES =====================
+// ===================== BANCO DE QUESTÕES ======================
 string[] faixasEtarias = {
 "Até 12 anos", "13 a 17 anos", "18 a 24 anos",
 "25 a 39 anos", "40 anos ou mais", "Prefiro não informar"
