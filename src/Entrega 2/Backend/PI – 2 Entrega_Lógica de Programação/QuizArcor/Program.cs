@@ -20,15 +20,7 @@ int[] corretas = { 2, 0, 3, 0, 0, 2, 1, 3, 1, 0, 0, 0, 0, 0, 3, 1, 0, 2, 2, 2, 0
 MostrarAbertura();
 string nickname = LerNickname();
 string faixa = LerFaixaEtaria(faixasEtarias);
-// PROVISÓRIO: apagar no início do Bloco 3
-//for (int i = 0; i < enunciados.Length; i++)
-//{
-// string[] opcoes = ExtrairAlternativas(alternativas, i);
-//string nivel = niveis[i];
-//string pergunta = Markup.Escape(enunciados[i]);
-//string respCorreta = Markup.Escape(opcoes[corretas[i]]);
-//AnsiConsole.MarkupLine($"[green]{nivel}[/] {pergunta} -> {respCorreta}");
-//}
+
 int totalQuestoes = enunciados.Length;  
 int[] questoesPorNivel = new int[31];
 int[] acertosPorNivel = new int[31];
